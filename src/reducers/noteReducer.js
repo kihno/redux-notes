@@ -1,4 +1,21 @@
-const noteReducer = (state = [], action) => {
+const generateId = () => {
+  Number((Math.random() * 1000000).toFixed(0))
+}
+
+const initialState = [
+  {
+    content: 'the app state is in redux store',
+    important: true,
+    id: generateId()
+  },
+  {
+    content: 'state changes are made with actions',
+    important: false,
+    id: generateId()
+  }
+]
+
+const noteReducer = (state = initialState, action) => {
   switch(action.type) {
     case 'NEW_NOTE':
       return [...state, action.payload]
@@ -16,10 +33,6 @@ const noteReducer = (state = [], action) => {
     default:
       return state
   }
-}
-
-const generateId = () => {
-  Number((Math.random() * 1000000).toFixed(0))
 }
 
 export const createNote = (content) => {
