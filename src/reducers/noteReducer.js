@@ -4,23 +4,13 @@ const generateId = () => {
   Number((Math.random() * 1000000).toFixed(0))
 }
 
-const initialState = [
-  {
-    content: 'the app state is in redux store',
-    important: true,
-    id: 1
-  },
-  {
-    content: 'state changes are made with actions',
-    important: false,
-    id: 2
-  }
-]
-
 const noteSlice = createSlice({
   name: 'notes',
-  initialState,
+  initialState: [],
   reducers: {
+    setNotes(state, action) {
+      return action.payload
+    },
     createNote(state, action) {
       const content = action.payload
       state.push({
@@ -40,6 +30,9 @@ const noteSlice = createSlice({
       return state.map(note =>
         note.id !== id ? note : changedNote
       )
+    },
+    appendNote(state, action) {
+      state.push(action.payload)
     }
   }
 })
@@ -82,6 +75,6 @@ const noteSlice = createSlice({
 //   }
 // }
 
-export const { createNote, toggleImportanceOf } = noteSlice.actions
+export const { setNotes, createNote, toggleImportanceOf, appendNote } = noteSlice.actions
 
 export default noteSlice.reducer
