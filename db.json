@@ -12,8 +12,13 @@
     },
     {
       "content": "new note in the server",
-      "important": true,
+      "important": false,
       "id": 3
+    },
+    {
+      "content": "another new new",
+      "important": false,
+      "id": 4
     }
   ]
 }
